@@ -17,6 +17,9 @@ function main(): void {
   if (/\s/.test(WORD)) {
     throw new Error("entry must be a single word with no spaces");
   }
+  if (/[A-Z0-9]/.test(WORD)) {
+    throw new Error("entry word must be plain lowercase letters only, no capitals or numbers");
+  }
   const outDir = process.env.MAKEFUN_OUTPUT_DIR || "/output";
   fs.mkdirSync(outDir, { recursive: true });
   fs.writeFileSync(path.join(outDir, "entry.txt"), WORD + "\n", "utf8");
